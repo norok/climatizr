@@ -1,58 +1,30 @@
 angular.module('climatizr.services', [])
 
-.factory('WeatherFactory', function($q, $resource) {
-  var weatherIDResource    = $resource('http://api.openweathermap.org/data/2.5/weather?id=:cid&appid=eb8a795d9750c67ed7fbcc96d3ecd05a&units=metric&lang=pt', {cid: '@cid'});
-  var weatherCityResource  = $resource('http://api.openweathermap.org/data/2.5/weather?q=:name&appid=eb8a795d9750c67ed7fbcc96d3ecd05a&units=metric&lang=pt', {name: '@name'});
-
-  var forecastIDResource   = $resource('http://api.openweathermap.org/data/2.5/forecast?id=:cid&appid=eb8a795d9750c67ed7fbcc96d3ecd05a&units=metric&lang=pt', {cid: '@cid'});
-  var forecastCityResource = $resource('http://api.openweathermap.org/data/2.5/forecast?q=:name&appid=eb8a795d9750c67ed7fbcc96d3ecd05a&units=metric&lang=pt', {name: '@name'});
+.factory('WeatherFactory', function($q, $resource, RequestFactory) {
+  var darkSkyUrl = 'https://api.darksky.net/forecast/d2deeb708d6b5a2f85682a02f40a8d9d/';
 
   return {
-    currentWeatherById: function(id) {
+    weatherByLocation: function(lat,lng) {
       var defer = $q.defer();
 
-      weatherIDResource.get({cid:id}, 
-        function (success) {
-          defer.resolve(success);
-        }, function (err) {
-          defer.reject(err);
-        });
+      console.log('Requesting Weather Data')
 
-      return defer.promise;
-    },
-    currentWeatherByName: function(name) {
-      var defer = $q.defer();
+      RequestFactory.request({
+        method: 'GET',
+        url: darkSkyUrl + lat + ',' + lng,
+        data: {},
+        params: {
+          units: 'si',
+          lang: 'pt'
+        },
+      })
+      .then( function(success) {
+        console.log(success);
 
-      weatherCityResource.get({name:name}, 
-        function (success) {
-          defer.resolve(success);
-        }, function (err) {
-          defer.reject(err);
-        });
-
-      return defer.promise;
-    },
-    forecastById: function(id) {
-      var defer = $q.defer();
-
-      forecastIDResource.get({cid:id}, 
-        function (success) {
-          defer.resolve(success);
-        }, function (err) {
-          defer.reject(err);
-        });
-
-      return defer.promise;
-    },
-    forecastByName: function(name) {
-      var defer = $q.defer();
-
-      forecastCityResource.get({name:name}, 
-        function (success) {
-          defer.resolve(success);
-        }, function (err) {
-          defer.reject(err);
-        });
+        defer.resolve(success);
+      }, function(err) {
+        defer.reject(err);
+      });
 
       return defer.promise;
     }
@@ -62,6 +34,8 @@ angular.module('climatizr.services', [])
 .factory('CitiesFactory', function($q, RequestFactory) {
   var states = [];
   var statesData = [];
+
+  var mapsUrl = '//maps.google.com/maps/api/geocode/json';
 
   return {
     initialize: function() {
@@ -83,7 +57,7 @@ angular.module('climatizr.services', [])
           for (i in statesData) {
             states.push(statesData[i].sigla);
           }
-          
+
           defer.resolve(true);
         }, function(err) {
           console.error('States/Cities Data not loaded');
@@ -101,6 +75,26 @@ angular.module('climatizr.services', [])
     },
     statesData: function() {
       return statesData;
+    },
+    cityData: function(state,city) {
+      var defer = $q.defer();
+
+      RequestFactory.request({
+        method: 'GET',
+        url: mapsUrl,
+        data: {},
+        params: {
+          address: state + ',' + city,
+          sensor: false
+        },
+      })
+      .then( function(success) {
+        defer.resolve(success.data.results[0]);
+      }, function(err) {
+        defer.reject(err);
+      })
+
+      return defer.promise;
     }
   }
 })

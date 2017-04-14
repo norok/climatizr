@@ -6,6 +6,8 @@ angular.module('climatizr.controllers', [])
   $scope.currentState = {};
   $scope.currentCities = [];
 
+  $scope.currentCity = {};
+
   $scope.weatherData = {};
 
   $scope.citySelectizeConfig = {
@@ -36,13 +38,20 @@ angular.module('climatizr.controllers', [])
     $scope.getCurrentWeather($scope.data.filter.city);
   }
 
-  $scope.getCurrentWeather = function(name) {
-    var query = name + ',br';
-
-    WeatherFactory.currentWeatherByName(query)
+  $scope.getCurrentWeather = function() {
+    CitiesFactory.cityData($scope.data.filter.state, $scope.data.filter.city)
     .then( function(data) {
-      $scope.weatherData = data;
+      $scope.currentCity = data;
+
+      var lat = $scope.currentCity.geometry.location.lat;
+      var lng = $scope.currentCity.geometry.location.lng;
+
+      WeatherFactory.weatherByLocation(lat,lng)
+      .then( function(data) {
+        $scope.weatherData = data;
+      });
     });
+
   }
 
   $scope.changeState = function() {
@@ -52,7 +61,7 @@ angular.module('climatizr.controllers', [])
   }
 
   $scope.changeCity = function() {
-    $scope.getCurrentWeather($scope.data.filter.city);
+    $scope.getCurrentWeather();
   }
 
   $scope.setCityState = function(city,state) {
