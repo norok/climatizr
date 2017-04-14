@@ -1,0 +1,12 @@
+// @see variables.scss
+
+//
+// Custom easing
+// -------------------------
+
+$cubic-easing:            cubic-bezier(0.1, 0.21, 0.12, 0.99);
+$cubic-easing-out:        cubic-bezier(0.78, 0.19, 0.96, 0.79);
+
+@mixin default-transition {
+  @include transition(all 300ms $cubic-easing 0s);
+}
