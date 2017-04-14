@@ -70,7 +70,7 @@ angular.module('climatizr.services', [])
       if (statesData.length == 0) {
         RequestFactory.request({
           method: 'GET',
-          url: '/data/estados-cidades.json',
+          url: './data/estados-cidades.json',
           data: {},
           params: {},
           headers: {
