@@ -2,10 +2,72 @@
 <html>
 <head>
   <title>Climatizr</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-<div id="app-root" ng-app="climatizr">
-  
+<div id="app-root" ng-app="climatizr" ng-controller="ClimatizrController">
+  <header class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <h1 class="hidden">Climatizr</h1>
+        <div class="navbar-brand">Climatizr</div>
+      </div>
+      <nav>
+        <ul class="navbar-nav nav menu">
+          <li><a href="#" ng-click="viewFavorite()">Minha Cidade Favorita</a></li>
+          <li><a href="#" ng-click="setCityState('Blumenau','SC')">Blumenau, SC</a></li>
+          <li><a href="#" ng-click="setCityState('Campinas','SP')">Campinas, SP</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <section class="panel panel-default text-center" id="city-selector">
+      <div class="panel-heading">
+        Selecione seu Estado e Cidade
+      </div>
+      <div class="panel-body">
+        <div class="form-inline">
+          <div class="form-group text-left">
+            <label class="sr-only" for="form-state">Estado</label>
+            <select class="form-control" name="form-state" id="form-state" ng-model="data.filter.state" ng-options="option for option in states" ng-change="changeState()"></select>
+          </div>
+          <div class="form-group text-left">
+            <label class="sr-only" for="form-city">Cidade</label>
+            <select class="form-control" name="form-city" id="form-city" chosen ng-options="opt for opt in currentCities" ng-model="data.filter.city" ng-change="changeCity()">
+              <option value=""></option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="current-weather">
+      <code>
+        {{ weatherData }}
+      </code>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container-fluid">
+      <div class="text-right">Data powered by openweathermap.org</div>
+    </div>
+  </footer>
 </div>
+
+<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="js/chosen.jquery.min.js"></script>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.js"></script>
+
+<script type="text/javascript" src="app/lib/angular-chosen.js"></script>
+
+<script type="text/javascript" src="app/app.js"></script>
+<script type="text/javascript" src="app/controllers.js"></script>
+<script type="text/javascript" src="app/services.js"></script>
 </body>
 </html>
