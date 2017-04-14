@@ -1,5 +1,7 @@
 @charset "UTF-8";
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+@import url(../js/chosen.css);
+@import url(../js/chosen-bootstrap.css);
 /* line 9, bootstrap/sass/_normalize.scss */
 html {
   font-family: sans-serif;
@@ -7265,5 +7267,9 @@ button.close {
   /* line 18, bootstrap/sass/mixins/_responsive-visibility.scss */
   .hidden-print {
     display: none !important; } }
+
+/* line 1, scss/_general.scss */
+#form-city {
+  width: 200px; }
 
 /*# sourceMappingURL=style.css.map */
