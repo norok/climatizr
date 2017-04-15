@@ -46,6 +46,13 @@ angular.module('climatizr.controllers', [])
 
     $scope.getCurrentWeather($scope.data.filter.city);
 
+    // Chart global config
+    Chart.defaults.global.defaultFontFamily = '"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif';
+    Chart.defaults.global.defaultFontColor = '#FFF';
+    Chart.defaults.global.defaultFontSize = 14;
+    Chart.defaults.global.defaultFontStyle = 'bold';
+
+    // Chart building
     forecastChart = new Chart('forecast-chart', {
       type: 'line',
       data: {},
