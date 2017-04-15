@@ -54,7 +54,7 @@ angular.module('climatizr.controllers', [])
       $scope.data.filter.city = favoriteCity.city;
     }
     else {
-      $scope.favoriteThisCity();
+      $scope.favoriteThisCity(true);
     }
 
     updateState();
@@ -121,8 +121,8 @@ angular.module('climatizr.controllers', [])
   }
 
   // Favorite the currently shown city
-  $scope.favoriteThisCity = function() {
-    if ($scope.isValidCity()) {
+  $scope.favoriteThisCity = function(skipValidation) {
+    if ($scope.isValidCity() || skipValidation) {
       favoriteCity.state = $scope.data.filter.state;
       favoriteCity.city = $scope.data.filter.city;
 
