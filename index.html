@@ -51,7 +51,7 @@
       <section class="current-weather">
         <h2 class="sr-only">Tempo Atual</h2>
         <div class="date">
-          {{ currentWeather.time | date: 'EEE, dd/MM' }}
+          {{ currentWeather.time * 1000 | date: 'EEE, dd/MM' }}
         </div>
         <canvas id="icon-current" width="150" height="150"></canvas>
         <div class="data">
