@@ -7392,6 +7392,31 @@ body {
     text-shadow: 0 0 2px #000, 0 0 5px #000;
     text-decoration: none; }
 
+/* line 143, scss/_general.scss */
+#warning-modal .modal-dialog {
+  margin: 0 auto;
+  height: 100%; }
+  /* line 147, scss/_general.scss */
+  #warning-modal .modal-dialog .modal-content {
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #FFF;
+    text-align: center;
+    top: 50%; }
+    /* line 154, scss/_general.scss */
+    #warning-modal .modal-dialog .modal-content .modal-body {
+      padding-bottom: 0; }
+      /* line 156, scss/_general.scss */
+      #warning-modal .modal-dialog .modal-content .modal-body .title {
+        font-size: 23px; }
+    /* line 160, scss/_general.scss */
+    #warning-modal .modal-dialog .modal-content .modal-footer {
+      border-top: 0;
+      text-align: center; }
+
 /* line 1, scss/_weather-blocks.scss */
 .current-weather {
   color: #FFF;

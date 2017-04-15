@@ -138,3 +138,30 @@ body {
     text-decoration: none;
   }
 }
+
+#warning-modal {
+  .modal-dialog {
+    margin: 0 auto;
+    height: 100%;
+    
+    .modal-content {
+      @include translate(0, -50%);
+      background-color: rgba(#000, 0.8);
+      color: #FFF;
+      text-align: center;
+      top: 50%;
+      
+      .modal-body {
+        padding-bottom: 0;
+        .title {
+          font-size: 23px;
+        }
+      }
+      .modal-footer {
+        border-top: 0;
+        text-align: center;
+      }
+    }
+  }
+
+}

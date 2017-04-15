@@ -91,6 +91,9 @@ angular.module('climatizr.controllers', [])
     if ($scope.isValidCity()) {
       getCurrentWeather();
     }
+    else {
+      angular.element('#warning-modal').modal('show');
+    }
   }
 
   // Forces the city and state by given data
@@ -147,14 +150,7 @@ angular.module('climatizr.controllers', [])
   }
 
   $scope.isValidCity = function() {
-    if ($scope.currentCities.indexOf($scope.data.filter.city) >= 0) {
-      $scope.validCityTooltip = "";
-      return true;
-    }
-    else {
-      $scope.validCityTooltip = "A cidade escolhida não existe";
-      return false;
-    }
+    return $scope.currentCities.indexOf($scope.data.filter.city) >= 0;
   }
 
   // Configurate the availible cities when the state is changed
