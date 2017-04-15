@@ -88,11 +88,16 @@ body {
 
 #city-selector {
   .panel-heading {
-    font-size: 24px;
+    font-size: 23px;
   }
   .form-group,
   .favorite-button {
     vertical-align: top;
+  }
+  .form-group {
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
   .favorite-button {
     background: transparent none;
