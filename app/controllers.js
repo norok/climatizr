@@ -21,6 +21,7 @@ angular.module('climatizr.controllers', [])
 
   var citySelectize,
       forecastCarousel,
+      forecastChart,
       skycons = new Skycons({"color": "#FFF"});
 
   $scope.data = {
@@ -44,6 +45,15 @@ angular.module('climatizr.controllers', [])
     setDayTime();
 
     $scope.getCurrentWeather($scope.data.filter.city);
+
+    forecastChart = new Chart('forecast-chart', {
+      type: 'line',
+      data: {},
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+      }
+    })
   }
 
   $scope.getCurrentWeather = function() {
@@ -90,9 +100,36 @@ angular.module('climatizr.controllers', [])
             }
           });
 
+          var days = [];
+          var highs = [];
+          var lows = [];
+
           for (key in $scope.forecast) {
             setIcon('icon-day' + key, $scope.forecast[key].icon);
+
+            days.push($filter('date')($scope.forecast[key].time * 1000,'EEE, dd/MM'));
+            highs.push($filter('number')($scope.forecast[key].temperatureMax, 0));
+            lows.push($filter('number')($scope.forecast[key].temperatureMin, 0));
           }
+
+          forecastChart.data.labels = days;
+          forecastChart.data.datasets = [
+            {
+              label: 'Altas',
+              data: highs,
+              borderColor: "rgba(192,85,83,1)",
+              backgroundColor: "rgba(255,255,255,0.2)",
+              borderWidth: 4,
+            },
+            {
+              label: 'Baixas',
+              data: lows,
+              borderColor: "rgba(83,80,188,1)",
+              backgroundColor: "rgba(255,255,255,0.2)",
+              borderWidth: 4,
+            }
+          ];
+          forecastChart.update();
         },100);
       });
     });
