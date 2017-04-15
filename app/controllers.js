@@ -28,6 +28,7 @@ angular.module('climatizr.controllers', [])
       forecastCarousel,
       forecastChart,
       cookieData,
+      favoriteCity = {state:'',city:''},
       skycons = new Skycons({"color": "#FFF"}),
       cookieExpiration = new Date();
 
@@ -46,7 +47,7 @@ angular.module('climatizr.controllers', [])
     $scope.statesData = CitiesFactory.statesData();
 
     if (!!cookieData && cookieData != '') {
-      var favoriteCity = JSON.parse(cookieData);
+      favoriteCity = JSON.parse(cookieData);
       $scope.data.filter.state = favoriteCity.state;
       $scope.data.filter.city = favoriteCity.city;
     }
@@ -90,24 +91,40 @@ angular.module('climatizr.controllers', [])
 
   // Forces the city and state by given data
   $scope.setCityState = function(city,state) {
-    $scope.data.filter.state = state;
-    $scope.changeState();
+    if ($scope.data.filter.state != state) {
+      $scope.data.filter.state = state;
+      $scope.changeState();
+    }
 
-    $scope.data.filter.city = city;
+    if ($scope.data.filter.city != city) {
+      $scope.data.filter.city = city;
 
-    getCurrentWeather();
+      getCurrentWeather();
+    }
   }
 
   // Get your current favorite city and show the forecast data
   $scope.viewFavorite = function() {
+    if ($scope.data.filter.state != favoriteCity.state) {
+      $scope.data.filter.state = favoriteCity.state;
+      $scope.changeState();
+    }
 
+    if ($scope.data.filter.city != favoriteCity.city) {
+      $scope.data.filter.city = favoriteCity.city;
+
+      getCurrentWeather();
+    }
   }
 
   // Favorite the currently shown city
   $scope.favoriteThisCity = function() {
+    favoriteCity.state = $scope.data.filter.state;
+    favoriteCity.city = $scope.data.filter.city;
+
     var data = {
-      city: $scope.data.filter.city,
-      state: $scope.data.filter.state,
+      state: favoriteCity.state,
+      city: favoriteCity.city,
     };
     $cookies.put('climatizrFavoriteCity', JSON.stringify(data), {
       expires: cookieExpiration.toUTCString(),
@@ -116,8 +133,17 @@ angular.module('climatizr.controllers', [])
   }
 
   // Returns the correct class for the favorite city
-  $scope.favoriteCityClass = function() {
-    return 'fa fa-star-o';
+  $scope.isFavoriteCity = function() {
+    return favoriteCity.state == $scope.data.filter.state && favoriteCity.city == $scope.data.filter.city;
+  }
+
+  $scope.favoriteTooltip = function() {
+    if ($scope.isFavoriteCity()) {
+      return 'Esta é sua cidade favorita';
+    }
+    else {
+      return 'Favoritar cidade';
+    }
   }
 
   // Configurate the availible cities when the state is changed
@@ -214,6 +240,7 @@ angular.module('climatizr.controllers', [])
           ];
           forecastChart.update();
 
+          angular.element('[data-toggle="tooltip"]').tooltip();
           angular.element('[data-toggle="popover"]').popover();
         },100);
       });

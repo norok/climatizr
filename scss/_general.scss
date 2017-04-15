@@ -11,7 +11,7 @@ body {
 
 #app-root {
   padding-bottom: 40px;
-  
+
   .main-container {
     position: relative;
     z-index: 2;
@@ -25,7 +25,7 @@ body {
     position: fixed;
     right: 0;
     top: 0;
-    
+
     &.night {
       background-image: url('../images/night.jpg');
     }
@@ -39,7 +39,7 @@ body {
   background-color: rgba(#000, 0.3);
   border: none;
   border-radius: 0;
-  
+
   .navbar-brand {
     color: #FFF;
     font-family: $headings-font-family;
@@ -62,15 +62,32 @@ body {
   }
 }
 
-#city-selector {  
+#city-selector {
   .panel-heading {
     font-size: 30px;
+  }
+  .form-group,
+  .favorite-button {
+    vertical-align: top;
+  }
+  .favorite-button {
+    background: transparent none;
+    border: none;
+    color: $brand-warning;
+    font-size: 28px;
+    height: 34px;
+    line-height: 1;
+    outline: none;
+  }
+
+  #form-city {
+    width: 250px;
   }
 }
 
 .panel-light {
   background-color: rgba(#FFF, 0.1);
-  
+
   .panel-heading {
     border-bottom: none;
     color: #FFF;
@@ -91,8 +108,4 @@ body {
     text-shadow: 0 0 2px #000, 0 0 5px #000;
     text-decoration: none;
   }
-}
-
-#form-city {
-  width: 200px;
 }

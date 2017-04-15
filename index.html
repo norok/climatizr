@@ -45,7 +45,7 @@
                 <option value=""></option>
               </select>
             </div>
-            <button type="button" ng-click="favoriteThisCity()"><i ng-class="favoriteCityClass()"></i></button>
+            <button type="button" class="favorite-button" ng-click="favoriteThisCity()" data-toggle="tooltip" data-placement="bottom" title="Esta é sua cidade favorita" data-original-title="{{ favoriteTooltip() }}"><i ng-class="{'fa fa-star': isFavoriteCity(), 'fa fa-star-o': !isFavoriteCity()}"></i></button>
           </div>
         </div>
       </section>
@@ -67,7 +67,7 @@
             <strong>Sensação Térmica:</strong> {{ currentWeather.apparentTemperature | number:0 }}°C<strong> - {{ currentWeather.summary }}</strong>
           </div>
           <div class="rain">
-            <strong>Chuva:</strong> {{ currentWeather.precipProbability }}% - {{ currentWeather.precipIntensity }}mm
+            <strong>Chuva:</strong> {{ currentWeather.precipProbability * 100 }}% - {{ currentWeather.precipIntensity }}mm/h
           </div>
         </div>
       </section>
@@ -77,7 +77,7 @@
         </div>
         <div class="panel-body">
           <ul class="list-unstyled owl-carousel" id="forecast-carousel">
-            <li ng-repeat="day in forecast" class="weekday" data-toggle="popover" data-trigger="hover click" data-content="{{ todos[$index] }}" data-container="body" data-placement="top">
+            <li ng-repeat="day in forecast" class="weekday" data-toggle="popover" data-trigger="hover" data-content="{{ todos[$index] }}" data-container="body" data-placement="top" role="button" tabindex="{{ $index + 100 }}">
               <div class="date">
                 {{ (day.time * 1000) | date: 'EEE, dd/MM' }}
               </div>
@@ -107,7 +107,7 @@
     <div class="container-fluid">
       <div class="text-right"><a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a></div>
     </div>
-  </footer>    
+  </footer>
   <div class="bg" ng-class="data.dayclass"></div>
 </div>
 

@@ -7326,32 +7326,47 @@ body {
 #city-selector .panel-heading {
   font-size: 30px; }
 
-/* line 71, scss/_general.scss */
+/* line 69, scss/_general.scss */
+#city-selector .form-group,
+#city-selector .favorite-button {
+  vertical-align: top; }
+
+/* line 73, scss/_general.scss */
+#city-selector .favorite-button {
+  background: transparent none;
+  border: none;
+  color: #f0ad4e;
+  font-size: 28px;
+  height: 34px;
+  line-height: 1;
+  outline: none; }
+
+/* line 83, scss/_general.scss */
+#city-selector #form-city {
+  width: 250px; }
+
+/* line 88, scss/_general.scss */
 .panel-light {
   background-color: rgba(255, 255, 255, 0.1); }
-  /* line 74, scss/_general.scss */
+  /* line 91, scss/_general.scss */
   .panel-light .panel-heading {
     border-bottom: none;
     color: #FFF;
     font-family: "Oswald", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding-bottom: 0; }
 
-/* line 82, scss/_general.scss */
+/* line 99, scss/_general.scss */
 #site-footer {
   bottom: 10px;
   left: 0;
   position: absolute;
   right: 0;
   z-index: 3; }
-  /* line 89, scss/_general.scss */
+  /* line 106, scss/_general.scss */
   #site-footer a {
     color: #FFF;
     text-shadow: 0 0 2px #000, 0 0 5px #000;
     text-decoration: none; }
-
-/* line 96, scss/_general.scss */
-#form-city {
-  width: 200px; }
 
 /* line 1, scss/_weather-blocks.scss */
 .current-weather {
@@ -7390,19 +7405,20 @@ body {
 #forecast-carousel .weekday {
   color: #FFF;
   text-align: center;
-  padding: 0 10px; }
-  /* line 40, scss/_weather-blocks.scss */
+  padding: 0 10px;
+  outline: none; }
+  /* line 41, scss/_weather-blocks.scss */
   #forecast-carousel .weekday .date {
     font-size: 18px;
     font-family: "Oswald", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin-bottom: 5px; }
-  /* line 45, scss/_weather-blocks.scss */
+  /* line 46, scss/_weather-blocks.scss */
   #forecast-carousel .weekday .min-max {
     font-size: 16px;
     font-family: "Oswald", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bold;
     margin-bottom: 10px; }
-  /* line 51, scss/_weather-blocks.scss */
+  /* line 52, scss/_weather-blocks.scss */
   #forecast-carousel .weekday .summary {
     font-weight: bold; }
 
