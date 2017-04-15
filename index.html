@@ -8,7 +8,8 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Oswald:400,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="js/owl-carousel/assets/owl.carousel.min.css">
+  <link rel="stylesheet" type="text/css" href="js/owl-carousel/assets/owl.carousel.min.css">
+  <link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.min.css">
 </head>
 <body>
 <div id="app-root" ng-app="climatizr" ng-controller="ClimatizrController">
@@ -42,11 +43,12 @@
             </div>
             <div class="form-group text-left">
               <label class="sr-only" for="form-city">Cidade</label>
-              <select class="form-control" name="form-city" id="form-city" chosen ng-options="opt for opt in currentCities" ng-model="data.filter.city" ng-change="changeCity()">
-                <option value=""></option>
-              </select>
+              <input class="form-control" type="text" id="form-city" name="form-city" ng-model="data.filter.city" placeholder="Digite o nome da cidade" />
             </div>
-            <button type="button" class="favorite-button" ng-click="favoriteThisCity()" data-toggle="tooltip" data-placement="bottom" title="Esta é sua cidade favorita" data-original-title="{{ favoriteTooltip() }}"><i ng-class="{'fa fa-star': isFavoriteCity(), 'fa fa-star-o': !isFavoriteCity()}"></i></button>
+            <div class="form-group">
+              <button type="button" class="btn btn-primary" ng-disabled="!isValidCity()">Ver Clima</button>
+              <button type="button" class="favorite-button" ng-click="favoriteThisCity()" data-toggle="tooltip" data-placement="bottom" title="Esta é sua cidade favorita" data-original-title="{{ favoriteTooltip() }}"><i ng-class="{'fa fa-star': isFavoriteCity(), 'fa fa-star-o': !isFavoriteCity()}"></i></button>
+            </div>
           </div>
         </div>
       </section>
@@ -113,7 +115,7 @@
 </div>
 
 <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="js/chosen.jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/skycons.js"></script>
 <script type="text/javascript" src="js/owl-carousel/owl.carousel.min.js"></script>
 <script type="text/javascript" src="js/Chart.bundle.min.js"></script>
@@ -126,8 +128,6 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-cookies.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-resource.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.5.9/angular-locale_pt-br.min.js"></script>
-
-<script type="text/javascript" src="app/lib/angular-chosen.js"></script>
 
 <script type="text/javascript" src="app/app.js"></script>
 <script type="text/javascript" src="app/controllers.js"></script>

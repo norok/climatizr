@@ -142,11 +142,19 @@ angular.module('climatizr.controllers', [])
     }
   }
 
+  $scope.isValidCity = function() {
+    return $scope.currentCities.indexOf($scope.data.filter.city) >= 0;
+  }
+
   // Configurate the availible cities when the state is changed
   function updateState() {
     $scope.currentCities = [];
     $scope.currentState = $filter('filter')($scope.statesData, {sigla: $scope.data.filter.state})[0];
     $scope.currentCities = angular.copy($scope.currentState.cidades);
+
+    angular.element('#form-city').autocomplete({
+      source: $scope.currentCities
+    });
   }
 
   // Get thy current weather information and build the chart and carousel
