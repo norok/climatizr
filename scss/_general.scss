@@ -1,3 +1,98 @@
+html {
+  height: 100%;
+  position: relative;
+}
+
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#app-root {
+  padding-bottom: 40px;
+  
+  .main-container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .bg {
+    background-position: top center;
+    background-size: cover;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    
+    &.night {
+      background-image: url('../images/night.jpg');
+    }
+    &.day {
+      background-image: url('../images/day.jpg');
+    }
+  }
+}
+
+.navbar-default {
+  background-color: rgba(#000, 0.3);
+  border: none;
+  border-radius: 0;
+  
+  .navbar-brand {
+    color: #FFF;
+    font-family: $headings-font-family;
+    cursor: default;
+    &:hover {
+      color: #FFF;
+    }
+  }
+
+  .navbar-nav {
+    > li {
+      > a {
+        color: rgba(#FFF, 0.9);
+        &:hover,
+        &:focus {
+          color: #FFF;
+        }
+      }
+    }
+  }
+}
+
+#city-selector {  
+  .panel-heading {
+    font-size: 30px;
+  }
+}
+
+.panel-light {
+  background-color: rgba(#FFF, 0.1);
+  
+  .panel-heading {
+    border-bottom: none;
+    color: #FFF;
+    font-family: $headings-font-family;
+    padding-bottom: 0;
+  }
+}
+
+#site-footer {
+  bottom: 10px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: 3;
+
+  a {
+    color: #FFF;
+    text-shadow: 0 0 2px #000, 0 0 5px #000;
+    text-decoration: none;
+  }
+}
+
 #form-city {
   width: 200px;
 }

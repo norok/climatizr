@@ -1376,7 +1376,7 @@ html {
 
 /* line 27, bootstrap/sass/_scaffolding.scss */
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
@@ -1475,8 +1475,8 @@ hr {
 /* line 9, bootstrap/sass/_type.scss */
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: inherit;
-  font-weight: 500;
+  font-family: "Oswald", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
   line-height: 1.1;
   color: inherit; }
   /* line 16, bootstrap/sass/_type.scss */
@@ -6509,7 +6509,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6638,7 +6638,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -7269,7 +7269,141 @@ button.close {
     display: none !important; } }
 
 /* line 1, scss/_general.scss */
+html {
+  height: 100%;
+  position: relative; }
+
+/* line 6, scss/_general.scss */
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+  position: relative; }
+
+/* line 12, scss/_general.scss */
+#app-root {
+  padding-bottom: 40px; }
+  /* line 15, scss/_general.scss */
+  #app-root .main-container {
+    position: relative;
+    z-index: 2; }
+  /* line 20, scss/_general.scss */
+  #app-root .bg {
+    background-position: top center;
+    background-size: cover;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0; }
+    /* line 29, scss/_general.scss */
+    #app-root .bg.night {
+      background-image: url("../images/night.jpg"); }
+    /* line 32, scss/_general.scss */
+    #app-root .bg.day {
+      background-image: url("../images/day.jpg"); }
+
+/* line 38, scss/_general.scss */
+.navbar-default {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 0; }
+  /* line 43, scss/_general.scss */
+  .navbar-default .navbar-brand {
+    color: #FFF;
+    font-family: "Oswald", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    cursor: default; }
+    /* line 47, scss/_general.scss */
+    .navbar-default .navbar-brand:hover {
+      color: #FFF; }
+  /* line 54, scss/_general.scss */
+  .navbar-default .navbar-nav > li > a {
+    color: rgba(255, 255, 255, 0.9); }
+    /* line 56, scss/_general.scss */
+    .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+      color: #FFF; }
+
+/* line 66, scss/_general.scss */
+#city-selector .panel-heading {
+  font-size: 30px; }
+
+/* line 71, scss/_general.scss */
+.panel-light {
+  background-color: rgba(255, 255, 255, 0.1); }
+  /* line 74, scss/_general.scss */
+  .panel-light .panel-heading {
+    border-bottom: none;
+    color: #FFF;
+    font-family: "Oswald", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding-bottom: 0; }
+
+/* line 82, scss/_general.scss */
+#site-footer {
+  bottom: 10px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: 3; }
+  /* line 89, scss/_general.scss */
+  #site-footer a {
+    color: #FFF;
+    text-shadow: 0 0 2px #000, 0 0 5px #000;
+    text-decoration: none; }
+
+/* line 96, scss/_general.scss */
 #form-city {
   width: 200px; }
+
+/* line 1, scss/_weather-blocks.scss */
+.current-weather {
+  color: #FFF;
+  text-align: center;
+  margin-bottom: 20px; }
+  /* line 6, scss/_weather-blocks.scss */
+  .current-weather .date {
+    font-size: 20px;
+    font-family: "Oswald", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  /* line 11, scss/_weather-blocks.scss */
+  .current-weather .temp {
+    display: inline-block;
+    font-family: "Oswald", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 15px;
+    position: relative;
+    left: -35px; }
+    /* line 21, scss/_weather-blocks.scss */
+    .current-weather .temp .min-max {
+      -webkit-transform: translate(0, -50%);
+      -ms-transform: translate(0, -50%);
+      -o-transform: translate(0, -50%);
+      transform: translate(0, -50%);
+      font-size: 20px;
+      left: 100%;
+      line-height: 1.7;
+      padding-left: 15px;
+      position: absolute;
+      top: 50%;
+      white-space: nowrap; }
+
+/* line 35, scss/_weather-blocks.scss */
+#forecast-carousel .weekday {
+  color: #FFF;
+  text-align: center;
+  padding: 0 10px; }
+  /* line 40, scss/_weather-blocks.scss */
+  #forecast-carousel .weekday .date {
+    font-size: 18px;
+    font-family: "Oswald", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-bottom: 5px; }
+  /* line 45, scss/_weather-blocks.scss */
+  #forecast-carousel .weekday .min-max {
+    font-size: 16px;
+    font-family: "Oswald", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    margin-bottom: 10px; }
+  /* line 51, scss/_weather-blocks.scss */
+  #forecast-carousel .weekday .summary {
+    font-weight: bold; }
 
 /*# sourceMappingURL=style.css.map */
