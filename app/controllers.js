@@ -16,6 +16,8 @@ angular.module('climatizr.controllers', [])
 
   $scope.todos = [];
 
+  $scope.validCityTooltip = '';
+
   $scope.data = {
     filter: {
       state: 'SC',
@@ -86,7 +88,9 @@ angular.module('climatizr.controllers', [])
 
   // Updates the weather automatically when the city is changed
   $scope.changeCity = function() {
-    getCurrentWeather();
+    if ($scope.isValidCity()) {
+      getCurrentWeather();
+    }
   }
 
   // Forces the city and state by given data
@@ -143,7 +147,14 @@ angular.module('climatizr.controllers', [])
   }
 
   $scope.isValidCity = function() {
-    return $scope.currentCities.indexOf($scope.data.filter.city) >= 0;
+    if ($scope.currentCities.indexOf($scope.data.filter.city) >= 0) {
+      $scope.validCityTooltip = "";
+      return true;
+    }
+    else {
+      $scope.validCityTooltip = "A cidade escolhida não existe";
+      return false;
+    }
   }
 
   // Configurate the availible cities when the state is changed
@@ -153,7 +164,11 @@ angular.module('climatizr.controllers', [])
     $scope.currentCities = angular.copy($scope.currentState.cidades);
 
     angular.element('#form-city').autocomplete({
-      source: $scope.currentCities
+      source: $scope.currentCities,
+      select: function(event, ui) {
+        console.log(event,ui);
+        console.log($scope.data.filter.city)
+      },
     });
   }
 

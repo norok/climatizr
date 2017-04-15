@@ -46,7 +46,7 @@
               <input class="form-control" type="text" id="form-city" name="form-city" ng-model="data.filter.city" placeholder="Digite o nome da cidade" />
             </div>
             <div class="form-group">
-              <button type="button" class="btn btn-primary" ng-disabled="!isValidCity()">Ver Clima</button>
+              <button type="button" class="btn btn-primary" ng-click="changeCity()" data-toggle="tooltip" data-placement="bottom" title="Ver clima da cidade atual" data-original-title="{{ validCityTooltip }}">Ver Clima</button>
               <button type="button" class="favorite-button" ng-click="favoriteThisCity()" data-toggle="tooltip" data-placement="bottom" title="Esta é sua cidade favorita" data-original-title="{{ favoriteTooltip() }}"><i ng-class="{'fa fa-star': isFavoriteCity(), 'fa fa-star-o': !isFavoriteCity()}"></i></button>
             </div>
           </div>

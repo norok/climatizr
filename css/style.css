@@ -1,7 +1,5 @@
 @charset "UTF-8";
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-@import url(../js/chosen.css);
-@import url(../js/chosen-bootstrap.css);
 /* line 9, bootstrap/sass/_normalize.scss */
 html {
   font-family: sans-serif;
