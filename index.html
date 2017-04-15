@@ -76,7 +76,7 @@
         </div>
         <div class="panel-body">
           <ul class="list-unstyled owl-carousel" id="forecast-carousel">
-            <li ng-repeat="day in forecast" class="weekday">
+            <li ng-repeat="day in forecast" class="weekday" data-toggle="popover" data-trigger="hover click" data-content="{{ todos[$index] }}" data-container="body" data-placement="top">
               <div class="date">
                 {{ (day.time * 1000) | date: 'EEE, dd/MM' }}
               </div>
@@ -115,6 +115,8 @@
 <script type="text/javascript" src="js/skycons.js"></script>
 <script type="text/javascript" src="js/owl-carousel/owl.carousel.min.js"></script>
 <script type="text/javascript" src="js/Chart.bundle.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/tooltip.js"></script>
+<script type="text/javascript" src="bootstrap/js/popover.js"></script>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.5.9/angular-locale_pt-br.min.js"></script>
