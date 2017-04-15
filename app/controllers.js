@@ -78,7 +78,7 @@ angular.module('climatizr.controllers', [])
               0: {
                 items: 2,
               },
-              400: {
+              600: {
                 items: 4,
               },
               995: {

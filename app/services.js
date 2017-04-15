@@ -1,26 +1,22 @@
 angular.module('climatizr.services', [])
 
-.factory('WeatherFactory', function($q, $resource, RequestFactory) {
-  var darkSkyUrl = 'https://api.darksky.net/forecast/d2deeb708d6b5a2f85682a02f40a8d9d/';
+.factory('WeatherFactory', function($q, $resource, $http, $sce) {
+  var baseUrl = 'https://api.darksky.net/forecast/';
+  var key = 'd2deeb708d6b5a2f85682a02f40a8d9d';
 
   return {
     weatherByLocation: function(lat,lng) {
-      var defer = $q.defer();
+      var defer = $q.defer(),
+          urlstring = [baseUrl, key, '/', lat, ',', lng, '?units=si&lang=pt&callback=JSON_CALLBACK'].join(''),
+          url = $sce.trustAsResourceUrl(urlstring);
 
-      RequestFactory.request({
-        method: 'GET',
-        url: darkSkyUrl + lat + ',' + lng,
-        data: {},
-        params: {
-          units: 'si',
-          lang: 'pt'
-        },
-      })
-      .then( function(success) {
-        defer.resolve(success.data);
-      }, function(err) {
-        defer.reject(err);
-      });
+      $http.jsonp(urlstring)
+        .then( function(success) {
+          defer.resolve(success.data);
+        })
+        .catch( function(data, status, headers, config) {
+          defer.reject(status);
+        });
 
       return defer.promise;
     }
