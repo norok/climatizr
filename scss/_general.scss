@@ -40,6 +40,10 @@ body {
   border: none;
   border-radius: 0;
 
+  > .container {
+    position: relative;
+  }
+
   .navbar-brand {
     color: #FFF;
     font-family: $headings-font-family;
@@ -49,7 +53,27 @@ body {
     }
   }
 
+  button.navbar-toggle {
+    border-radius: 0;
+    border: none;
+    color: #FFF;
+    font-size: 30px;
+    line-height: 50px;
+    margin: 0;
+    padding: 0 15px;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(#000, 0.5);
+      color: #FFF;
+    }
+  }
+
   .navbar-nav {
+    text-align: right;
     > li {
       > a {
         color: rgba(#FFF, 0.9);
@@ -64,7 +88,7 @@ body {
 
 #city-selector {
   .panel-heading {
-    font-size: 30px;
+    font-size: 24px;
   }
   .form-group,
   .favorite-button {
@@ -81,7 +105,7 @@ body {
   }
 
   #form-city {
-    width: 250px;
+    min-width: 250px;
   }
 }
 

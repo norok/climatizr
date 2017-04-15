@@ -1775,7 +1775,7 @@ dd {
 .dl-horizontal dd:after {
   clear: both; }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   /* line 211, bootstrap/sass/_type.scss */
   .dl-horizontal dt {
     float: left;
@@ -4108,7 +4108,7 @@ tbody.collapse.in {
   bottom: 100%;
   margin-bottom: 2px; }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   /* line 207, bootstrap/sass/_dropdowns.scss */
   .navbar-right .dropdown-menu {
     right: 0;
@@ -4620,7 +4620,7 @@ tbody.collapse.in {
   /* line 19, bootstrap/sass/mixins/_clearfix.scss */
   .navbar:after {
     clear: both; }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     /* line 11, bootstrap/sass/_navbar.scss */
     .navbar {
       border-radius: 4px; } }
@@ -4634,7 +4634,7 @@ tbody.collapse.in {
 .navbar-header:after {
   clear: both; }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   /* line 31, bootstrap/sass/_navbar.scss */
   .navbar-header {
     float: left; } }
@@ -4657,7 +4657,7 @@ tbody.collapse.in {
   /* line 59, bootstrap/sass/_navbar.scss */
   .navbar-collapse.in {
     overflow-y: auto; }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     /* line 50, bootstrap/sass/_navbar.scss */
     .navbar-collapse {
       width: auto;
@@ -4696,7 +4696,7 @@ tbody.collapse.in {
 .container-fluid > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px; }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     /* line 108, bootstrap/sass/_navbar.scss */
     .container > .navbar-header,
     .container > .navbar-collapse,
@@ -4709,7 +4709,7 @@ tbody.collapse.in {
 .navbar-static-top {
   z-index: 1000;
   border-width: 0 0 1px; }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     /* line 128, bootstrap/sass/_navbar.scss */
     .navbar-static-top {
       border-radius: 0; } }
@@ -4721,7 +4721,7 @@ tbody.collapse.in {
   right: 0;
   left: 0;
   z-index: 1030; }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     /* line 138, bootstrap/sass/_navbar.scss */
     .navbar-fixed-top,
     .navbar-fixed-bottom {
@@ -4751,7 +4751,7 @@ tbody.collapse.in {
   /* line 175, bootstrap/sass/_navbar.scss */
   .navbar-brand > img {
     display: block; }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     /* line 180, bootstrap/sass/_navbar.scss */
     .navbar > .container .navbar-brand,
     .navbar > .container-fluid .navbar-brand {
@@ -4781,7 +4781,7 @@ tbody.collapse.in {
   /* line 217, bootstrap/sass/_navbar.scss */
   .navbar-toggle .icon-bar + .icon-bar {
     margin-top: 4px; }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     /* line 193, bootstrap/sass/_navbar.scss */
     .navbar-toggle {
       display: none; } }
@@ -4794,7 +4794,7 @@ tbody.collapse.in {
     padding-top: 10px;
     padding-bottom: 10px;
     line-height: 20px; }
-  @media (max-width: 767px) {
+  @media (max-width: 991px) {
     /* line 243, bootstrap/sass/_navbar.scss */
     .navbar-nav .open .dropdown-menu {
       position: static;
@@ -4814,7 +4814,7 @@ tbody.collapse.in {
         /* line 257, bootstrap/sass/_navbar.scss */
         .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-nav .open .dropdown-menu > li > a:focus {
           background-image: none; } }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     /* line 232, bootstrap/sass/_navbar.scss */
     .navbar-nav {
       float: left;
@@ -4887,14 +4887,14 @@ tbody.collapse.in {
     /* line 537, bootstrap/sass/_forms.scss */
     .navbar-form .has-feedback .form-control-feedback {
       top: 0; } }
-  @media (max-width: 767px) {
+  @media (max-width: 991px) {
     /* line 298, bootstrap/sass/_navbar.scss */
     .navbar-form .form-group {
       margin-bottom: 5px; }
       /* line 302, bootstrap/sass/_navbar.scss */
       .navbar-form .form-group:last-child {
         margin-bottom: 0; } }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     /* line 286, bootstrap/sass/_navbar.scss */
     .navbar-form {
       width: auto;
@@ -4937,14 +4937,14 @@ tbody.collapse.in {
 .navbar-text {
   margin-top: 15px;
   margin-bottom: 15px; }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     /* line 359, bootstrap/sass/_navbar.scss */
     .navbar-text {
       float: left;
       margin-left: 15px;
       margin-right: 15px; } }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   /* line 379, bootstrap/sass/_navbar.scss */
   .navbar-left {
     float: left !important; }
@@ -5002,7 +5002,7 @@ tbody.collapse.in {
   .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
     background-color: #e7e7e7;
     color: #555; }
-  @media (max-width: 767px) {
+  @media (max-width: 991px) {
     /* line 473, bootstrap/sass/_navbar.scss */
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
       color: #777; }
@@ -5082,7 +5082,7 @@ tbody.collapse.in {
   .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
     background-color: #090808;
     color: #fff; }
-  @media (max-width: 767px) {
+  @media (max-width: 991px) {
     /* line 607, bootstrap/sass/_navbar.scss */
     .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
       border-color: #090808; }
@@ -7308,30 +7308,52 @@ body {
   border: none;
   border-radius: 0; }
   /* line 43, scss/_general.scss */
+  .navbar-default > .container {
+    position: relative; }
+  /* line 47, scss/_general.scss */
   .navbar-default .navbar-brand {
     color: #FFF;
     font-family: "Oswald", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     cursor: default; }
-    /* line 47, scss/_general.scss */
+    /* line 51, scss/_general.scss */
     .navbar-default .navbar-brand:hover {
       color: #FFF; }
-  /* line 54, scss/_general.scss */
-  .navbar-default .navbar-nav > li > a {
-    color: rgba(255, 255, 255, 0.9); }
-    /* line 56, scss/_general.scss */
-    .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  /* line 56, scss/_general.scss */
+  .navbar-default button.navbar-toggle {
+    border-radius: 0;
+    border: none;
+    color: #FFF;
+    font-size: 30px;
+    line-height: 50px;
+    margin: 0;
+    padding: 0 15px;
+    position: absolute;
+    right: 0;
+    top: 0; }
+    /* line 68, scss/_general.scss */
+    .navbar-default button.navbar-toggle:hover, .navbar-default button.navbar-toggle:focus {
+      background-color: rgba(0, 0, 0, 0.5);
       color: #FFF; }
+  /* line 75, scss/_general.scss */
+  .navbar-default .navbar-nav {
+    text-align: right; }
+    /* line 78, scss/_general.scss */
+    .navbar-default .navbar-nav > li > a {
+      color: rgba(255, 255, 255, 0.9); }
+      /* line 80, scss/_general.scss */
+      .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+        color: #FFF; }
 
-/* line 66, scss/_general.scss */
+/* line 90, scss/_general.scss */
 #city-selector .panel-heading {
-  font-size: 30px; }
+  font-size: 24px; }
 
-/* line 69, scss/_general.scss */
+/* line 93, scss/_general.scss */
 #city-selector .form-group,
 #city-selector .favorite-button {
   vertical-align: top; }
 
-/* line 73, scss/_general.scss */
+/* line 97, scss/_general.scss */
 #city-selector .favorite-button {
   background: transparent none;
   border: none;
@@ -7341,28 +7363,28 @@ body {
   line-height: 1;
   outline: none; }
 
-/* line 83, scss/_general.scss */
+/* line 107, scss/_general.scss */
 #city-selector #form-city {
-  width: 250px; }
+  min-width: 250px; }
 
-/* line 88, scss/_general.scss */
+/* line 112, scss/_general.scss */
 .panel-light {
   background-color: rgba(255, 255, 255, 0.1); }
-  /* line 91, scss/_general.scss */
+  /* line 115, scss/_general.scss */
   .panel-light .panel-heading {
     border-bottom: none;
     color: #FFF;
     font-family: "Oswald", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding-bottom: 0; }
 
-/* line 99, scss/_general.scss */
+/* line 123, scss/_general.scss */
 #site-footer {
   bottom: 10px;
   left: 0;
   position: absolute;
   right: 0;
   z-index: 3; }
-  /* line 106, scss/_general.scss */
+  /* line 130, scss/_general.scss */
   #site-footer a {
     color: #FFF;
     text-shadow: 0 0 2px #000, 0 0 5px #000;
