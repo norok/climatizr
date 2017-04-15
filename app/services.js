@@ -7,8 +7,6 @@ angular.module('climatizr.services', [])
     weatherByLocation: function(lat,lng) {
       var defer = $q.defer();
 
-      console.log('Requesting Weather Data')
-
       RequestFactory.request({
         method: 'GET',
         url: darkSkyUrl + lat + ',' + lng,
@@ -19,9 +17,7 @@ angular.module('climatizr.services', [])
         },
       })
       .then( function(success) {
-        console.log(success);
-
-        defer.resolve(success);
+        defer.resolve(success.data);
       }, function(err) {
         defer.reject(err);
       });
