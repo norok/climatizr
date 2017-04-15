@@ -122,17 +122,22 @@ angular.module('climatizr.controllers', [])
 
   // Favorite the currently shown city
   $scope.favoriteThisCity = function() {
-    favoriteCity.state = $scope.data.filter.state;
-    favoriteCity.city = $scope.data.filter.city;
+    if ($scope.isValidCity()) {
+      favoriteCity.state = $scope.data.filter.state;
+      favoriteCity.city = $scope.data.filter.city;
 
-    var data = {
-      state: favoriteCity.state,
-      city: favoriteCity.city,
-    };
-    $cookies.put('climatizrFavoriteCity', JSON.stringify(data), {
-      expires: cookieExpiration.toUTCString(),
-      path: '/'
-    });
+      var data = {
+        state: favoriteCity.state,
+        city: favoriteCity.city,
+      };
+      $cookies.put('climatizrFavoriteCity', JSON.stringify(data), {
+        expires: cookieExpiration.toUTCString(),
+        path: '/'
+      });
+    }
+    else {
+      angular.element('#warning-modal').modal('show');
+    }
   }
 
   // Returns the correct class for the favorite city
