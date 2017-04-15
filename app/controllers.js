@@ -32,11 +32,13 @@ angular.module('climatizr.controllers', [])
     dayClass: 'day',
   };
 
+  // Trigger the init only when the data about cities and states are availible
   CitiesFactory.initialize()
   .then( function() {
     init();
   });
 
+  // Initialize the app
   function init() {
     $scope.states = CitiesFactory.states();
     $scope.statesData = CitiesFactory.statesData();
@@ -44,7 +46,7 @@ angular.module('climatizr.controllers', [])
     updateState();
     setDayTime();
 
-    $scope.getCurrentWeather($scope.data.filter.city);
+    getCurrentWeather();
 
     // Chart global config
     Chart.defaults.global.defaultFontFamily = '"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif';
@@ -63,12 +65,43 @@ angular.module('climatizr.controllers', [])
     })
   }
 
-  $scope.getCurrentWeather = function() {
+  // Clear the city field and trigger the update when the state is changed
+  $scope.changeState = function() {
+    $scope.data.filter.city = '';
+
+    updateState();
+  }
+
+  // Updates the weather automatically when the city is changed
+  $scope.changeCity = function() {
+    getCurrentWeather();
+  }
+
+  // Forces the city and state by given data
+  $scope.setCityState = function(city,state) {
+    $scope.data.filter.state = state;
+    $scope.changeState();
+
+    $scope.data.filter.city = city;
+
+    getCurrentWeather();
+  }
+
+  // Configurate the availible cities when the state is changed
+  function updateState() {
+    $scope.currentState = $filter('filter')($scope.statesData, {sigla: $scope.data.filter.state})[0];
+    $scope.currentCities = angular.copy($scope.currentState.cidades);
+  }
+
+  // Get thy current weather information and build the chart and carousel
+  function getCurrentWeather() {
     if (!!forecastCarousel) {
+      // Destroy the owl carousel to build a new one with new data
       forecastCarousel.trigger('destroy.owl.carousel').removeClass('owl-drag owl-loaded');
       forecastCarousel.find('.owl-stage-outer').children().unwrap();
     }
 
+    // Get the city latitude and longitude
     CitiesFactory.cityData($scope.data.filter.state, $scope.data.filter.city)
     .then( function(data) {
       $scope.currentCity = data;
@@ -76,6 +109,7 @@ angular.module('climatizr.controllers', [])
       var lat = $scope.currentCity.geometry.location.lat;
       var lng = $scope.currentCity.geometry.location.lng;
 
+      // Get the availible weather information
       WeatherFactory.weatherByLocation(lat,lng)
       .then( function(data) {
         $scope.weatherData = data;
@@ -89,7 +123,10 @@ angular.module('climatizr.controllers', [])
 
         setIcon('icon-current', data.currently.icon);
 
+        // I use the timeout function to prevent rendering the carousel before angular renders the list
+        // and to prevent a chart without any data
         $timeout(function() {
+          // Build a responsive owl carousel
           forecastCarousel = angular.element('#forecast-carousel').owlCarousel({
             responsive: {
               0: {
@@ -114,11 +151,13 @@ angular.module('climatizr.controllers', [])
           for (key in $scope.forecast) {
             setIcon('icon-day' + key, $scope.forecast[key].icon);
 
+            // Build data for building the chart
             days.push($filter('date')($scope.forecast[key].time * 1000,'EEE, dd/MM'));
             highs.push($filter('number')($scope.forecast[key].temperatureMax, 0));
             lows.push($filter('number')($scope.forecast[key].temperatureMin, 0));
           }
 
+          // Updates the chart datasets
           forecastChart.data.labels = days;
           forecastChart.data.datasets = [
             {
@@ -140,33 +179,9 @@ angular.module('climatizr.controllers', [])
         },100);
       });
     });
-
   }
 
-  $scope.changeState = function() {
-    $scope.data.filter.city = '';
-
-    updateState();
-  }
-
-  $scope.changeCity = function() {
-    $scope.getCurrentWeather();
-  }
-
-  $scope.setCityState = function(city,state) {
-    $scope.data.filter.state = state;
-    $scope.changeState();
-
-    $scope.data.filter.city = city;
-
-    $scope.getCurrentWeather();
-  }
-
-  function updateState() {
-    $scope.currentState = $filter('filter')($scope.statesData, {sigla: $scope.data.filter.state})[0];
-    $scope.currentCities = angular.copy($scope.currentState.cidades);
-  }
-
+  // Set the class for showing the background
   function setDayTime() {
     var date = new Date($scope.currentDate);
     var hour = date.getHours();
@@ -174,6 +189,7 @@ angular.module('climatizr.controllers', [])
     $scope.data.dayclass = (hour < 18 && hour > 5) ? 'day' : 'night';
   }
 
+  // Set the skycon according to the given climate type
   function setIcon(id, iconId) {
     switch (iconId) {
       case 'clear-day':
@@ -209,4 +225,5 @@ angular.module('climatizr.controllers', [])
     }
     skycons.play();
   }
+
 });
