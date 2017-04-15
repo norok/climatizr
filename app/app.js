@@ -1,1 +1,1 @@
-angular.module('climatizr', ['climatizr.services', 'climatizr.controllers', 'ngResource', 'localytics.directives']);
+angular.module('climatizr', ['climatizr.services', 'climatizr.controllers', 'ngResource', 'localytics.directives', 'ngCookies']);

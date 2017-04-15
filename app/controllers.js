@@ -1,6 +1,6 @@
 angular.module('climatizr.controllers', [])
 
-.controller('ClimatizrController', function($rootScope, $scope, $filter, $timeout, WeatherFactory, CitiesFactory) {
+.controller('ClimatizrController', function($rootScope, $scope, $filter, $cookies, $timeout, WeatherFactory, CitiesFactory) {
   $scope.states = [];
   $scope.statesData = [];
   $scope.currentCities = [];
@@ -16,23 +16,23 @@ angular.module('climatizr.controllers', [])
 
   $scope.todos = [];
 
-  $scope.citySelectizeConfig = {
-    maxOptions: 30,
-    closeAfterSelect: true,
-  }
+  $scope.data = {
+    filter: {
+      state: 'SC',
+      city: 'Blumenau',
+    },
+    dayClass: 'day',
+  };
 
   var citySelectize,
       forecastCarousel,
       forecastChart,
-      skycons = new Skycons({"color": "#FFF"});
+      cookieData,
+      skycons = new Skycons({"color": "#FFF"}),
+      cookieExpiration = new Date();
 
-  $scope.data = {
-    filter: {
-      city: 'Blumenau',
-      state: 'SC',
-    },
-    dayClass: 'day',
-  };
+  cookieExpiration.setTime(Date.now() + (60 * 24 * 3600 * 1000));
+  cookieData = $cookies.get('climatizrFavoriteCity');
 
   // Trigger the init only when the data about cities and states are availible
   CitiesFactory.initialize()
@@ -44,6 +44,15 @@ angular.module('climatizr.controllers', [])
   function init() {
     $scope.states = CitiesFactory.states();
     $scope.statesData = CitiesFactory.statesData();
+
+    if (!!cookieData && cookieData != '') {
+      var favoriteCity = JSON.parse(cookieData);
+      $scope.data.filter.state = favoriteCity.state;
+      $scope.data.filter.city = favoriteCity.city;
+    }
+    else {
+      $scope.favoriteThisCity();
+    }
 
     updateState();
     setDayTime();
@@ -64,7 +73,7 @@ angular.module('climatizr.controllers', [])
         responsive: true,
         maintainAspectRatio: false,
       }
-    })
+    });
   }
 
   // Clear the city field and trigger the update when the state is changed
@@ -87,6 +96,28 @@ angular.module('climatizr.controllers', [])
     $scope.data.filter.city = city;
 
     getCurrentWeather();
+  }
+
+  // Get your current favorite city and show the forecast data
+  $scope.viewFavorite = function() {
+
+  }
+
+  // Favorite the currently shown city
+  $scope.favoriteThisCity = function() {
+    var data = {
+      city: $scope.data.filter.city,
+      state: $scope.data.filter.state,
+    };
+    $cookies.put('climatizrFavoriteCity', JSON.stringify(data), {
+      expires: cookieExpiration.toUTCString(),
+      path: '/'
+    });
+  }
+
+  // Returns the correct class for the favorite city
+  $scope.favoriteCityClass = function() {
+    return 'fa fa-star-o';
   }
 
   // Configurate the availible cities when the state is changed
