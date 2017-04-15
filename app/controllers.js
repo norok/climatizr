@@ -91,10 +91,8 @@ angular.module('climatizr.controllers', [])
 
   // Forces the city and state by given data
   $scope.setCityState = function(city,state) {
-    if ($scope.data.filter.state != state) {
-      $scope.data.filter.state = state;
-      $scope.changeState();
-    }
+    $scope.data.filter.state = state;
+    updateState();
 
     if ($scope.data.filter.city != city) {
       $scope.data.filter.city = city;
@@ -105,10 +103,8 @@ angular.module('climatizr.controllers', [])
 
   // Get your current favorite city and show the forecast data
   $scope.viewFavorite = function() {
-    if ($scope.data.filter.state != favoriteCity.state) {
-      $scope.data.filter.state = favoriteCity.state;
-      $scope.changeState();
-    }
+    $scope.data.filter.state = favoriteCity.state;
+    updateState();
 
     if ($scope.data.filter.city != favoriteCity.city) {
       $scope.data.filter.city = favoriteCity.city;
@@ -148,6 +144,7 @@ angular.module('climatizr.controllers', [])
 
   // Configurate the availible cities when the state is changed
   function updateState() {
+    $scope.currentCities = [];
     $scope.currentState = $filter('filter')($scope.statesData, {sigla: $scope.data.filter.state})[0];
     $scope.currentCities = angular.copy($scope.currentState.cidades);
   }

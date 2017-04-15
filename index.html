@@ -67,7 +67,7 @@
             <strong>Sensação Térmica:</strong> {{ currentWeather.apparentTemperature | number:0 }}°C<strong> - {{ currentWeather.summary }}</strong>
           </div>
           <div class="rain">
-            <strong>Chuva:</strong> {{ currentWeather.precipProbability * 100 }}% - {{ currentWeather.precipIntensity }}mm/h
+            <strong>Chuva:</strong> {{ 100 * currentWeather.precipProbability | number:0 }}% - {{ currentWeather.precipIntensity }}mm/h
           </div>
         </div>
       </section>
