@@ -1,1 +1,0 @@
-angular.module('climatizr', ['climatizr.services', 'climatizr.controllers', 'ngResource', 'ngCookies']);

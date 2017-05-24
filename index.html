@@ -12,7 +12,7 @@
   <link rel="stylesheet" type="text/css" href="js/jquery-ui/jquery-ui.min.css">
 </head>
 <body>
-<div id="app-root" ng-app="climatizr" ng-controller="ClimatizrController">
+<div id="app-root" ng-app="climatizr" ng-controller="ClimatizrController as cl">
   <div class="main-container">
     <header class="navbar navbar-default">
       <div class="container">
@@ -23,9 +23,9 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
         <nav class="navbar-collapse collapse" id="navbar-collapse">
           <ul class="navbar-nav nav menu navbar-right">
-            <li><a href="#" ng-click="viewFavorite()">Minha Cidade Favorita</a></li>
-            <li><a href="#" ng-click="setCityState('Blumenau','SC')">Blumenau, SC</a></li>
-            <li><a href="#" ng-click="setCityState('Campinas','SP')">Campinas, SP</a></li>
+            <li><a href="#" ng-click="cl.viewFavorite()">Minha Cidade Favorita</a></li>
+            <li><a href="#" ng-click="cl.setCityState('Blumenau','SC')">Blumenau, SC</a></li>
+            <li><a href="#" ng-click="cl.setCityState('Campinas','SP')">Campinas, SP</a></li>
           </ul>
         </nav>
       </div>
@@ -39,15 +39,15 @@
           <div class="form-inline">
             <div class="form-group text-left">
               <label class="sr-only" for="form-state">Estado</label>
-              <select class="form-control" name="form-state" id="form-state" ng-model="data.filter.state" ng-options="option for option in states" ng-change="changeState()"></select>
+              <select class="form-control" name="form-state" id="form-state" ng-model="cl.filter.state" ng-options="option for option in cl.states" ng-change="cl.changeState()"></select>
             </div>
             <div class="form-group text-left">
               <label class="sr-only" for="form-city">Cidade</label>
-              <input class="form-control" type="text" id="form-city" name="form-city" ng-model="data.filter.city" placeholder="Digite o nome da cidade" />
+              <input class="form-control" type="text" id="form-city" name="form-city" ng-model="cl.filter.city" placeholder="Digite o nome da cidade" />
             </div>
             <div class="form-group">
-              <button type="button" class="btn btn-primary" ng-click="changeCity()" data-toggle="tooltip" data-placement="bottom" title="Ver clima da cidade atual">Ver Clima</button>
-              <button type="button" class="favorite-button" ng-click="favoriteThisCity()" data-toggle="tooltip" data-placement="bottom" title="Esta é sua cidade favorita" data-original-title="{{ favoriteTooltip() }}"><i ng-class="{'fa fa-star': isFavoriteCity(), 'fa fa-star-o': !isFavoriteCity()}"></i></button>
+              <button type="button" class="btn btn-primary" ng-click="cl.changeCity()" data-toggle="tooltip" data-placement="bottom" title="Ver clima da cidade atual">Ver Clima</button>
+              <button type="button" class="favorite-button" ng-click="cl.favoriteThisCity()" data-toggle="tooltip" data-placement="bottom" title="Esta é sua cidade favorita" data-original-title="{{ cl.favoriteTooltip() }}"><i ng-class="{'fa fa-star': cl.isFavoriteCity(), 'fa fa-star-o': !cl.isFavoriteCity()}"></i></button>
             </div>
           </div>
         </div>
@@ -55,22 +55,22 @@
       <section class="current-weather">
         <h2 class="sr-only">Tempo Atual</h2>
         <div class="date">
-          {{ currentWeather.time * 1000 | date: 'EEE, dd/MM' }}
+          {{ cl.currentWeather.time * 1000 | date: 'EEE, dd/MM' }}
         </div>
         <canvas id="icon-current" width="150" height="150"></canvas>
         <div class="data">
           <div class="temp">
-            {{ currentWeather.temperature | number:0 }}°C
+            {{ cl.currentWeather.temperature | number:0 }}°C
             <div class="min-max">
-              <div class="max"><i class="fa fa-caret-up"></i> {{ todayForecast.temperatureMax | number:0 }}°C</div>
-              <div class="min"><i class="fa fa-caret-down"></i> {{ todayForecast.temperatureMin | number:0 }}°C</div>
+              <div class="max"><i class="fa fa-caret-up"></i> {{ cl.todayForecast.temperatureMax | number:0 }}°C</div>
+              <div class="min"><i class="fa fa-caret-down"></i> {{ cl.todayForecast.temperatureMin | number:0 }}°C</div>
             </div>
           </div>
           <div class="summary">
-            <strong>Sensação Térmica:</strong> {{ currentWeather.apparentTemperature | number:0 }}°C<strong> - {{ currentWeather.summary }}</strong>
+            <strong>Sensação Térmica:</strong> {{ cl.currentWeather.apparentTemperature | number:0 }}°C<strong> - {{ cl.currentWeather.summary }}</strong>
           </div>
           <div class="rain">
-            <strong>Chuva:</strong> {{ 100 * currentWeather.precipProbability | number:0 }}% - {{ currentWeather.precipIntensity }}mm/h
+            <strong>Chuva:</strong> {{ 100 * cl.currentWeather.precipProbability | number:0 }}% - {{ cl.currentWeather.precipIntensity }}mm/h
           </div>
         </div>
       </section>
@@ -80,7 +80,7 @@
         </div>
         <div class="panel-body">
           <ul class="list-unstyled owl-carousel" id="forecast-carousel">
-            <li ng-repeat="day in forecast" class="weekday" data-toggle="popover" data-trigger="hover" data-content="{{ todos[$index] }}" data-container="body" data-placement="top" role="button" tabindex="{{ $index + 100 }}">
+            <li ng-repeat="day in cl.forecast" class="weekday" data-toggle="popover" data-trigger="hover" data-content="{{ cl.todos[$index] }}" data-container="body" data-placement="top" role="button" tabindex="{{ $index + 100 }}">
               <div class="date">
                 {{ (day.time * 1000) | date: 'EEE, dd/MM' }}
               </div>
@@ -111,7 +111,7 @@
       <div class="text-right"><a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a></div>
     </div>
   </footer>
-  <div class="bg" ng-class="data.dayclass"></div>
+  <div class="bg" ng-class="cl.dayclass"></div>
 
   <div class="modal fade" tabindex="-1" role="dialog" id="warning-modal">
     <div class="modal-dialog" role="document">
@@ -144,8 +144,11 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-resource.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.5.9/angular-locale_pt-br.min.js"></script>
 
-<script type="text/javascript" src="app/app.js"></script>
-<script type="text/javascript" src="app/controllers.js"></script>
-<script type="text/javascript" src="app/services.js"></script>
+<script type="text/javascript" src="app/app.module.js"></script>
+<script type="text/javascript" src="app/climatizr.controller.js"></script>
+<script type="text/javascript" src="app/cities.factory.js"></script>
+<script type="text/javascript" src="app/request.factory.js"></script>
+<script type="text/javascript" src="app/weather.factory.js"></script>
+<script type="text/javascript" src="app/whattodo.factory.js"></script>
 </body>
 </html>
